@@ -33,7 +33,9 @@ return packer.startup(function(use)
 
   use("nvim-lua/plenary.nvim") -- lua functions that many plugins use
 
-  use("bluz71/vim-nightfly-guicolors") -- preferred colorscheme
+  use("bluz71/vim-nightfly-guicolors") 
+
+  use { "catppuccin/nvim", as = "catppuccin" } -- preferred colorscheme
 
   use("christoomey/vim-tmux-navigator") -- tmux & split window navigation
 
@@ -57,6 +59,12 @@ return packer.startup(function(use)
 
   -- toggleterm floating terminal
   use ("akinsho/toggleterm.nvim")
+
+  -- vim-fugitive for git actions
+  use ("tpope/vim-fugitive")
+
+  -- nvim-transparent
+  use ("xiyaowong/transparent.nvim")
 
   -- fuzzy finding w/ telescope
   use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" }) -- fuzzy finder
