@@ -55,6 +55,9 @@ return packer.startup(function(use)
   -- statusline
   use("nvim-lualine/lualine.nvim")
 
+  -- toggleterm floating terminal
+  use ("akinsho/toggleterm.nvim")
+
   -- fuzzy finding w/ telescope
   use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" }) -- fuzzy finder
 
