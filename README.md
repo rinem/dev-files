@@ -43,3 +43,9 @@ Read the notes to get better understanding of how to use the config files
 - Install picom and copy picom folder to ~/.config
 - Add this line to start picom with the window manager i3
 `exec_always --no-startup-id picom`
+
+### Polybar
+- Install polybar then move the polybar folder to ~/.config
+- Make sure to have JetBrains Nerd Font for the glyphs/icons
+- Add this line in i3 config to start polybar with window manager
+`exec_always --no-startup-id ~/.config/polybar/launch.sh`
