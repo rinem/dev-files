@@ -24,3 +24,17 @@ Read the notes to get better understanding of how to use the config files
 - Update .tmux.conf file from this repo and source the config file with
   `tmux source ~/.tmux.conf`
 - Use the prefix which should be `Ctrl-b` and `I` to install all the plugins
+
+### Alacritty
+- Just copy the alacritty folder to ~/.config folder
+
+### Rofi 
+- Download JetBrains Mono Nerd Font first from [here](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrainsMono.zip)
+- Extract font to .fonts folder in ~/ and then clear cache with `fc-cache -f -v`
+- Copy rofi folder to ~/.config folder 
+
+### Starship
+- Install starship and copy `starship.toml` file to ~/.config
+`curl -sS https://starship.rs/install.sh | sh`
+- Add this line to the end of your .zshrc
+`eval "$(starship init zsh)"`
