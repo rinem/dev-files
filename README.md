@@ -38,3 +38,8 @@ Read the notes to get better understanding of how to use the config files
 `curl -sS https://starship.rs/install.sh | sh`
 - Add this line to the end of your .zshrc
 `eval "$(starship init zsh)"`
+
+### Picom
+- Install picom and copy picom folder to ~/.config
+- Add this line to start picom with the window manager i3
+`exec_always --no-startup-id picom`
