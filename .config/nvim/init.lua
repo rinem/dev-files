@@ -18,6 +18,9 @@ vim.opt.relativenumber = true
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
 
+-- Conceallevel
+vim.opt.conceallevel = 2
+
 -- Don't show the mode, since it's already in status line
 vim.opt.showmode = false
 
@@ -64,6 +67,12 @@ vim.opt.scrolloff = 10
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+-- Move Lines
+vim.keymap.set('n', '<A-j>', ':m .+1<CR>==', { desc = '[M]ove line up' })
+vim.keymap.set('v', '<A-j>', ':m .+1<CR>==', { desc = '[M]ove line up' })
+vim.keymap.set('n', '<A-k>', ':m .-2<CR>==', { desc = '[M]ove line down' })
+vim.keymap.set('v', '<A-k>', ':m .-2<CR>==', { desc = '[M]ove line down' })
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
@@ -73,6 +82,32 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+
+-- oil nvim
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
+-- Tabs and Splits
+
+-- New tab
+vim.keymap.set("n", "te", ":tabedit")
+vim.keymap.set("n", "<tab>", ":tabnext<Return>", { noremap = true, silent = true })
+vim.keymap.set("n", "<s-tab>", ":tabprev<Return>", { noremap = true, silent = true })
+
+-- Split window
+vim.keymap.set("n", "ss", ":split<Return>", { noremap = true, silent = true })
+vim.keymap.set("n", "sv", ":vsplit<Return>", { noremap = true, silent = true })
+
+-- Move window
+vim.keymap.set("n", "sh", "<C-w>h")
+vim.keymap.set("n", "sk", "<C-w>k")
+vim.keymap.set("n", "sj", "<C-w>j")
+vim.keymap.set("n", "sl", "<C-w>l")
+
+-- Resize window
+vim.keymap.set("n", "<C-w><left>", "<C-w><")
+vim.keymap.set("n", "<C-w><right>", "<C-w>>")
+vim.keymap.set("n", "<C-w><up>", "<C-w>+")
+vim.keymap.set("n", "<C-w><down>", "<C-w>-")
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
@@ -260,6 +295,7 @@ require('lazy').setup {
       vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = '[F]ind [K]eymaps' })
       vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = '[F]ind [F]iles' })
       vim.keymap.set('n', '<leader>fs', builtin.builtin, { desc = '[F]ind [S]elect Telescope' })
+      vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = '[F]ind [B]uffers' })
       vim.keymap.set('n', '<leader>fw', builtin.grep_string, { desc = '[F]ind current [W]ord' })
       vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = '[F]ind by [G]rep' })
       vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = '[F]ind [D]iagnostics' })
@@ -622,6 +658,7 @@ require('lazy').setup {
 
       -- You can configure highlights by doing something like
       vim.cmd.hi 'Comment gui=none'
+      vim.cmd [[hi NvimTreeNormal guibg=NONE ctermbg=NONE]]
     end,
   },
 
@@ -694,8 +731,10 @@ require('lazy').setup {
           "sql",
           "svelte",
           "vim",
-          "markdown",
-          "markdown_inline",
+          "vue",
+          "pug",
+          -- "markdown",
+          -- "markdown_inline",
           "sql",
         },
         -- Autoinstall languages that are not installed
@@ -780,8 +819,16 @@ require('lazy').setup {
   require 'rinem.plugins.zenmode',
   require 'rinem.plugins.vim-fugitive',
   require 'rinem.plugins.dashboard-nvim',
-  require 'rinem.plugins.neo-tree',
+  require 'rinem.plugins.nvim-tree',
   require 'rinem.plugins.bufferline',
+  require 'rinem.plugins.harpoon',
+  require 'rinem.plugins.colorizer',
+  require 'rinem.plugins.colorizer',
+  require 'rinem.plugins.auto-session',
+  require 'rinem.plugins.transparent',
+  require 'rinem.plugins.oil',
+
+
   -- require 'rinem.plugins.indent_line',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
