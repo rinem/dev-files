@@ -67,31 +67,11 @@ vim.opt.scrolloff = 10
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
--- Move Lines
-vim.keymap.set('n', '<A-j>', ':m .+1<CR>==', { desc = '[M]ove line up' })
-vim.keymap.set('v', '<A-j>', ':m .+1<CR>==', { desc = '[M]ove line up' })
-vim.keymap.set('n', '<A-k>', ':m .-2<CR>==', { desc = '[M]ove line down' })
-vim.keymap.set('v', '<A-k>', ':m .-2<CR>==', { desc = '[M]ove line down' })
-
--- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-
--- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
--- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-
--- oil nvim
-vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
-
 -- Tabs and Splits
 
 -- New tab
-vim.keymap.set("n", "te", ":tabedit")
-vim.keymap.set("n", "<tab>", ":tabnext<Return>", { noremap = true, silent = true })
-vim.keymap.set("n", "<s-tab>", ":tabprev<Return>", { noremap = true, silent = true })
+vim.keymap.set("n", "<tab>", ":bnext<Return>", { noremap = true, silent = true })
+vim.keymap.set("n", "<s-tab>", ":bprev<Return>", { noremap = true, silent = true })
 
 -- Split window
 vim.keymap.set("n", "ss", ":split<Return>", { noremap = true, silent = true })
@@ -117,6 +97,26 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+
+-- Move Lines
+vim.keymap.set('n', '<A-j>', ':m .+1<CR>==', { desc = '[M]ove line up' })
+vim.keymap.set('v', '<A-j>', ':m .+1<CR>==', { desc = '[M]ove line up' })
+vim.keymap.set('n', '<A-k>', ':m .-2<CR>==', { desc = '[M]ove line down' })
+vim.keymap.set('v', '<A-k>', ':m .-2<CR>==', { desc = '[M]ove line down' })
+
+-- Diagnostic keymaps
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+
+-- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
+-- or just use <C-\><C-n> to exit terminal mode
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+
+-- oil nvim
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 -- [[ Basic Autocommands ]]
 
@@ -814,7 +814,7 @@ require('lazy').setup {
   require 'rinem.plugins.debug',
   -- require 'rinem.plugins.misc',
   require 'rinem.plugins.obsidian',
-  require 'rinem.plugins.noice',
+  -- require 'rinem.plugins.noice',
   require 'rinem.plugins.lualine',
   require 'rinem.plugins.zenmode',
   require 'rinem.plugins.vim-fugitive',
@@ -823,11 +823,13 @@ require('lazy').setup {
   require 'rinem.plugins.bufferline',
   require 'rinem.plugins.harpoon',
   require 'rinem.plugins.colorizer',
-  require 'rinem.plugins.colorizer',
   require 'rinem.plugins.auto-session',
   require 'rinem.plugins.transparent',
   require 'rinem.plugins.oil',
-
+  require 'rinem.plugins.neoscroll',
+  require 'rinem.plugins.fidget',
+  -- require 'rinem.plugins.lsp-zero',
+  require 'rinem.plugins.triptych',
 
   -- require 'rinem.plugins.indent_line',
 
