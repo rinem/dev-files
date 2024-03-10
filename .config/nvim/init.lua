@@ -15,6 +15,9 @@ vim.g.maplocalleader = ' '
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+vim.opt.tabstop=2
+vim.opt.shiftwidth=2
+
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
 
@@ -518,17 +521,21 @@ require('lazy').setup {
     opts = {
       notify_on_error = false,
       format_on_save = {
-        timeout_ms = 500,
-        lsp_fallback = true,
+        timeout_ms = 200,
+        lsp_fallback = false,
       },
       formatters_by_ft = {
-        lua = { 'stylua' },
-        -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
-        --
-        -- You can use a sub-list to tell conform to run *until* a formatter
-        -- is found.
-        javascript = { { "prettierd", "prettier" } },
+        go = { "goimports", "gofmt" },
+        javascript = { "prettierd", "eslint_d" },
+        typescript = { "prettierd", "eslint_d" },
+        javascriptreact = { "prettierd" },
+        typescriptreact = { "prettierd" },
+        json = { "prettierd" },
+        vue = { "prettierd", "eslint_d" },
+        lua = { "stylua" },
+        markdown = { "markdownlint" },
+        sh = { "shfmt" },
+        yaml = { "yamlfmt" },
       },
     },
   },
@@ -796,7 +803,8 @@ require('lazy').setup {
   require 'rinem.plugins.debug',
   -- require 'rinem.plugins.misc',
   require 'rinem.plugins.obsidian',
-  -- require 'rinem.plugins.noice',
+  -- require 'rinem.plugins.dressing',
+  require 'rinem.plugins.noice',
   require 'rinem.plugins.lualine',
   require 'rinem.plugins.zenmode',
   require 'rinem.plugins.vim-fugitive',
@@ -814,7 +822,7 @@ require('lazy').setup {
   -- require 'rinem.plugins.lsp-zero',
   require 'rinem.plugins.triptych',
 
-  -- require 'rinem.plugins.indent_line',
+  require 'rinem.plugins.indent_line',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
