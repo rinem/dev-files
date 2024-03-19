@@ -821,6 +821,7 @@ require('lazy').setup {
   require 'rinem.plugins.gitsigns',
   -- require 'rinem.plugins.lsp-zero',
   require 'rinem.plugins.triptych',
+  require 'rinem.plugins.toggleterm',
 
   require 'rinem.plugins.indent_line',
 
