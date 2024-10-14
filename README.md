@@ -94,6 +94,9 @@ Read the notes to get better understanding of how to use the config files
 ### Alacritty
 - Just copy the alacritty folder to ~/.config folder
 
+### Windows Terminal
+- Just copy the settings.json file from windows-terminal folder to the location `C:\Users\<username>\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState`
+
 ### Rofi 
 - Download JetBrains Mono Nerd Font first from [here](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrainsMono.zip)
 - Extract font to .fonts folder in ~/ and then clear cache with `fc-cache -f -v`
