@@ -163,7 +163,7 @@ require('lazy').setup {
   --    require('Comment').setup({})
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  { 'numToStr/Comment.nvim',    opts = {} },
 
   -- NOTE: Plugins can also be configured to run lua code when they are loaded.
   --
@@ -180,7 +180,7 @@ require('lazy').setup {
   -- after the plugin has been loaded:
   --  config = function() ... end
 
-  { -- Useful plugin to show you pending keybinds.
+  {                     -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     config = function() -- This is the function that runs, AFTER loading
@@ -697,7 +697,7 @@ require('lazy').setup {
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`
     'craftzdog/solarized-osaka.nvim',
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    lazy = false,    -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
       -- Load the colorscheme here
@@ -875,6 +875,7 @@ require('lazy').setup {
   require 'rinem.plugins.bufferline',
   require 'rinem.plugins.harpoon',
   require 'rinem.plugins.colorizer',
+  require 'rinem.plugins.conform',
   require 'rinem.plugins.auto-session',
   require 'rinem.plugins.transparent',
   require 'rinem.plugins.oil',
@@ -882,7 +883,7 @@ require('lazy').setup {
   require 'rinem.plugins.fidget',
   require 'rinem.plugins.gitsigns',
   -- require 'rinem.plugins.lsp-zero',
-  require 'rinem.plugins.triptych',
+  -- require 'rinem.plugins.triptych',
   require 'rinem.plugins.toggleterm',
   require 'rinem.plugins.none-ls',
 
