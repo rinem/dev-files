@@ -15,8 +15,8 @@ vim.g.maplocalleader = ' '
 vim.opt.number = true
 vim.opt.relativenumber = true
 
-vim.opt.tabstop=2
-vim.opt.shiftwidth=2
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -73,24 +73,24 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- Tabs and Splits
 
 -- New tab
-vim.keymap.set("n", "<tab>", ":bnext<Return>", { noremap = true, silent = true })
-vim.keymap.set("n", "<s-tab>", ":bprev<Return>", { noremap = true, silent = true })
+vim.keymap.set('n', '<tab>', ':bnext<Return>', { noremap = true, silent = true })
+vim.keymap.set('n', '<s-tab>', ':bprev<Return>', { noremap = true, silent = true })
 
 -- Split window
-vim.keymap.set("n", "ss", ":split<Return>", { noremap = true, silent = true })
-vim.keymap.set("n", "sv", ":vsplit<Return>", { noremap = true, silent = true })
+vim.keymap.set('n', 'ss', ':split<Return>', { noremap = true, silent = true })
+vim.keymap.set('n', 'sv', ':vsplit<Return>', { noremap = true, silent = true })
 
 -- Move window
-vim.keymap.set("n", "sh", "<C-w>h")
-vim.keymap.set("n", "sk", "<C-w>k")
-vim.keymap.set("n", "sj", "<C-w>j")
-vim.keymap.set("n", "sl", "<C-w>l")
+vim.keymap.set('n', 'sh', '<C-w>h')
+vim.keymap.set('n', 'sk', '<C-w>k')
+vim.keymap.set('n', 'sj', '<C-w>j')
+vim.keymap.set('n', 'sl', '<C-w>l')
 
 -- Resize window
-vim.keymap.set("n", "<C-w><left>", "<C-w><")
-vim.keymap.set("n", "<C-w><right>", "<C-w>>")
-vim.keymap.set("n", "<C-w><up>", "<C-w>+")
-vim.keymap.set("n", "<C-w><down>", "<C-w>-")
+vim.keymap.set('n', '<C-w><left>', '<C-w><')
+vim.keymap.set('n', '<C-w><right>', '<C-w>>')
+vim.keymap.set('n', '<C-w><up>', '<C-w>+')
+vim.keymap.set('n', '<C-w><down>', '<C-w>-')
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
@@ -101,12 +101,11 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
-
 -- Move Lines
 vim.keymap.set('n', '<A-j>', ':m .+1<CR>==', { desc = '[M]ove line up' })
 vim.keymap.set('v', '<A-j>', ':m .+1<CR>==', { desc = '[M]ove line up' })
-vim.keymap.set('n', '<A-k>', ':m .-2<CR>==', { desc = '[M]ove line down' })
 vim.keymap.set('v', '<A-k>', ':m .-2<CR>==', { desc = '[M]ove line down' })
+vim.keymap.set('n', '<A-k>', ':m .-2<CR>==', { desc = '[M]ove line down' })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
@@ -119,7 +118,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- oil nvim
-vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 
 -- [[ Basic Autocommands ]]
 
@@ -164,7 +163,7 @@ require('lazy').setup {
   --    require('Comment').setup({})
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim',    opts = {} },
+  { 'numToStr/Comment.nvim', opts = {} },
 
   -- NOTE: Plugins can also be configured to run lua code when they are loaded.
   --
@@ -181,7 +180,7 @@ require('lazy').setup {
   -- after the plugin has been loaded:
   --  config = function() ... end
 
-  {                     -- Useful plugin to show you pending keybinds.
+  { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     config = function() -- This is the function that runs, AFTER loading
@@ -262,7 +261,18 @@ require('lazy').setup {
         --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
         --   },
         -- },
-        -- pickers = {}
+        pickers = {
+          find_files = {
+            file_ignore_patterns = { 'node_modules', '.git', '.venv' },
+            hidden = true,
+          },
+        },
+        live_grep = {
+          file_ignore_patterns = { 'node_modules', '.git', '.venv' },
+          additional_args = function(_)
+            return { '--hidden' }
+          end,
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -458,6 +468,14 @@ require('lazy').setup {
         -- But for many setups, the LSP (`tsserver`) will work just fine
         tsserver = {},
         --
+        html = { filetypes = { 'html', 'twig', 'hbs' } },
+        cssls = {},
+        tailwindcss = {},
+        dockerls = {},
+        sqlls = {},
+        terraformls = {},
+        jsonls = {},
+        yamlls = {},
 
         lua_ls = {
           -- cmd = {...},
@@ -516,29 +534,29 @@ require('lazy').setup {
     end,
   },
 
-  { -- Autoformat
-    'stevearc/conform.nvim',
-    opts = {
-      notify_on_error = false,
-      format_on_save = {
-        timeout_ms = 200,
-        lsp_fallback = false,
-      },
-      formatters_by_ft = {
-        go = { "goimports", "gofmt" },
-        javascript = { "prettierd", "eslint_d" },
-        typescript = { "prettierd", "eslint_d" },
-        javascriptreact = { "prettierd" },
-        typescriptreact = { "prettierd" },
-        json = { "prettierd" },
-        vue = { "prettierd", "eslint_d" },
-        lua = { "stylua" },
-        markdown = { "markdownlint" },
-        sh = { "shfmt" },
-        yaml = { "yamlfmt" },
-      },
-    },
-  },
+  -- { -- Autoformat
+  --   'stevearc/conform.nvim',
+  --   opts = {
+  --     notify_on_error = false,
+  --     format_on_save = {
+  --       timeout_ms = 200,
+  --       lsp_fallback = false,
+  --     },
+  --     formatters_by_ft = {
+  --       go = { "goimports", "gofmt" },
+  --       javascript = { "prettierd", "eslint_d" },
+  --       typescript = { "prettierd", "eslint_d" },
+  --       javascriptreact = { "prettierd" },
+  --       typescriptreact = { "prettierd" },
+  --       json = { "prettierd" },
+  --       vue = { "prettierd", "eslint_d" },
+  --       lua = { "stylua" },
+  --       markdown = { "markdownlint" },
+  --       sh = { "shfmt" },
+  --       yaml = { "yamlfmt" },
+  --     },
+  --   },
+  -- },
 
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
@@ -569,13 +587,40 @@ require('lazy').setup {
       --    you can use this plugin to help you. It even has snippets
       --    for various frameworks/libraries/etc. but you will have to
       --    set up the ones that are useful for you.
-      -- 'rafamadriz/friendly-snippets',
+      'rafamadriz/friendly-snippets',
     },
     config = function()
       -- See `:help cmp`
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
       luasnip.config.setup {}
+      local kind_icons = {
+        Text = '󰉿',
+        Method = 'm',
+        Function = '󰊕',
+        Constructor = '',
+        Field = '',
+        Variable = '󰆧',
+        Class = '󰌗',
+        Interface = '',
+        Module = '',
+        Property = '',
+        Unit = '',
+        Value = '󰎠',
+        Enum = '',
+        Keyword = '󰌋',
+        Snippet = '',
+        Color = '󰏘',
+        File = '󰈙',
+        Reference = '',
+        Folder = '󰉋',
+        EnumMember = '',
+        Constant = '󰇽',
+        Struct = '',
+        Event = '',
+        Operator = '󰆕',
+        TypeParameter = '󰊄',
+      }
 
       cmp.setup {
         snippet = {
@@ -629,6 +674,19 @@ require('lazy').setup {
           { name = 'luasnip' },
           { name = 'path' },
         },
+        formatting = {
+          fields = { 'kind', 'abbr', 'menu' },
+          format = function(entry, vim_item)
+            vim_item.kind = string.format('%s', kind_icons[vim_item.kind])
+            vim_item.menu = ({
+              nvim_lsp = '[LSP]',
+              luasnip = '[Snippet]',
+              buffer = '[Buffer]',
+              path = '[Path]',
+            })[entry.source.name]
+            return vim_item
+          end,
+        },
       }
     end,
   },
@@ -639,7 +697,7 @@ require('lazy').setup {
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`
     'craftzdog/solarized-osaka.nvim',
-    lazy = false,    -- make sure we load this during startup if it is your main colorscheme
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
       -- Load the colorscheme here
@@ -700,31 +758,35 @@ require('lazy').setup {
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.configs').setup {
         ensure_installed = {
-          "cmake",
-          "cpp",
-          "css",
-          "gitignore",
-          "go",
-          "lua",
-          "html",
-          "graphql",
-          "http",
-          "java",
-          "php",
-          "python",
-          "regex",
-          "rust",
-          "scss",
-          "javascript",
-          "typescript",
-          "sql",
-          "svelte",
-          "vim",
-          "vue",
-          "pug",
+          'cmake',
+          'cpp',
+          'css',
+          'gitignore',
+          'go',
+          'lua',
+          'html',
+          'graphql',
+          'http',
+          'java',
+          'php',
+          'python',
+          'regex',
+          'rust',
+          'scss',
+          'javascript',
+          'typescript',
+          'sql',
+          'svelte',
+          'vim',
+          'vue',
+          'pug',
+          'vimdoc',
+          'json',
+          'tsx',
+          'bash',
           -- "markdown",
           -- "markdown_inline",
-          "sql",
+          'sql',
         },
         -- Autoinstall languages that are not installed
         auto_install = true,
@@ -822,6 +884,7 @@ require('lazy').setup {
   -- require 'rinem.plugins.lsp-zero',
   require 'rinem.plugins.triptych',
   require 'rinem.plugins.toggleterm',
+  require 'rinem.plugins.none-ls',
 
   require 'rinem.plugins.indent_line',
 

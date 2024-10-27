@@ -5,7 +5,7 @@ return {
         "stevearc/dressing.nvim"
     },
     opts = {
-        open_mapping = [[<leader>ft]],
+        open_mapping = [[<c-\>]],
         direction = "horizontal",
         shell = "/bin/bash",
         size = function()
